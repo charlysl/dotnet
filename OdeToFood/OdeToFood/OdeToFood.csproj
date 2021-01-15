@@ -2,9 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <!-- see https://stackoverflow.com/questions/51026013/razor-class-library-in-asp-net-core-2-1-1 -->
+    <CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
+
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.11" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\Restaurants\" />
   </ItemGroup>
 </Project>
