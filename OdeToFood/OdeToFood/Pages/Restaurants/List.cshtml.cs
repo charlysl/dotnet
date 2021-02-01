@@ -9,8 +9,14 @@ namespace OdeToFood.Pages.Restaurants
 {
     public class ListModel : PageModel
     {
-        public void OnGet()
+        public string Message
         {
+            get; set;
+        }
+
+        public void OnGet(confi)
+        {
+            Message = "Hello!";
         }
     }
 }
