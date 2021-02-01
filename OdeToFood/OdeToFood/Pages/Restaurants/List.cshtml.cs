@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
+using OdeToFood.Core;
+using OdeToFood.Data;
 
 namespace OdeToFood.Pages.Restaurants
 {
@@ -14,9 +17,19 @@ namespace OdeToFood.Pages.Restaurants
             get; set;
         }
 
-        public void OnGet(confi)
+        private IConfiguration config { get; }
+
+        public IEnumerable<Restaurant> Restaurants { get;  }
+
+        public ListModel(IConfiguration config, IRestaurantData restaurantData)
         {
-            Message = "Hello!";
+            this.config = config;
+            this.Restaurants = restaurantData.GetAll();
+        }
+
+        public void OnGet()
+        {
+            Message = config["Message"];
         }
     }
 }
