@@ -13,9 +13,9 @@ namespace OdeToFood.Data
         {
             restaurants = new List<Restaurant>()
             {
-                new Restaurant { Id = 1,  Name = "Namaste", Location = "Delhi", Cuisine = CuisineType.INDIAN },
-                new Restaurant { Id = 2,  Name = "Andale Guey", Location = "DF", Cuisine = CuisineType.MEXICAN },
-                new Restaurant { Id = 3,  Name = "Giorgio Trattoria", Location = "Venezia", Cuisine = CuisineType.ITALIAN },
+                new Restaurant { Id = 1,  Name = "Namaste", Location = "Delhi", Cuisine = CuisineType.Indian },
+                new Restaurant { Id = 2,  Name = "Andale Guey", Location = "DF", Cuisine = CuisineType.Mexican },
+                new Restaurant { Id = 3,  Name = "Giorgio Trattoria", Location = "Venezia", Cuisine = CuisineType.Italian },
             };
         }
 
