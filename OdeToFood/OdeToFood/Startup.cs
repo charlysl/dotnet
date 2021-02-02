@@ -25,6 +25,8 @@ namespace OdeToFood
         {
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation(); // see https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-compilation?view=aspnetcore-3.0&tabs=visual-studio
+
+            services.AddSingleton<RestaurantData, InMemoryRestaurantData>
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
