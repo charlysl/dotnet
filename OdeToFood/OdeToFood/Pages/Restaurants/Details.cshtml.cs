@@ -22,7 +22,7 @@ namespace OdeToFood.Pages.Restaurants
 
         public void OnGet(int restaurantId)
         {
-            Restaurant = restaurantsData.GetRestaurantById(restaurantId).First();
+            Restaurant = restaurantsData.GetById(restaurantId);
         }
     }
 }
