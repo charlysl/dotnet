@@ -19,16 +19,22 @@ namespace OdeToFood.Pages.Restaurants
 
         public IConfiguration config { get; private set; }
 
-        public IEnumerable<Restaurant> Restaurants { get;  }
+        private readonly IRestaurantData restaurantData;
+
+        public IEnumerable<Restaurant> Restaurants { get; private set; }
 
         public ListModel(IConfiguration config, IRestaurantData restaurantData)
         {
             this.config = config;
-            this.Restaurants = restaurantData.GetAll();
+            this.restaurantData = restaurantData;
+
+            this.Restaurants = restaurantData.GetRestaurantsByName();
         }
 
-        public void OnGet()
+        public void OnGet(string searchTerm)
         {
+            Restaurants = restaurantData.GetRestaurantsByName(searchTerm);
+
             Message = config["Message"];
         }
     }
