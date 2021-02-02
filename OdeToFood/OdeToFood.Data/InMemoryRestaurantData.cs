@@ -26,5 +26,12 @@ namespace OdeToFood.Data
                    orderby r.Name
                    select r;
         }
+
+        IEnumerable<Restaurant> IRestaurantData.GetRestaurantById(int restaurantId)
+        {
+            return from r in restaurants
+                   where r.Id.Equals(restaurantId)
+                   select r;
+        }
     }
 }

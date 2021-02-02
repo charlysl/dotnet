@@ -23,6 +23,7 @@
             <td>@restaurant.Name</td>
             <td>@restaurant.Location</td>
             <td>@restaurant.Cuisine</td>
+            <td><a class="btn btn-lg" asp-page="./Details" asp-route-restaurantId="@restaurant.Id">Details</a></td>
         </tr>
         }
     </table>
