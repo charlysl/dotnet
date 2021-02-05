@@ -88,6 +88,15 @@ namespace OdeToFood.Pages.Restaurants
 
             restaurantData.Commit();
 
+            // This is the right way of passing temporary data to
+            // another page.
+            //
+            // The reason is that if it was passed as some kind of
+            // parameter, and the user bookmarked that page, then
+            // the now expired message would have been displayed
+            // anyway.
+            TempData["Message"] = "Restaurant Saved!";
+
             // It is bad practice after making a POST request to
             // stay the same URL. The reason is that a POST request
             // typically creates new resources, which is not what you

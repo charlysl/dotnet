@@ -20,6 +20,11 @@ namespace OdeToFood.Pages.Restaurants
 
         public Restaurant Restaurant { get; set; }
 
+        // This is the best way of modeling a temporary message,
+        // a page model property
+        [TempData]
+        public string Message { get; set; }
+
         public IActionResult OnGet(int restaurantId)
         {
             Restaurant = restaurantsData.GetById(restaurantId);
