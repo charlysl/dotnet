@@ -27,6 +27,13 @@ namespace OdeToFood.Data
                    select r;
         }
 
+        Restaurant IRestaurantData.Add(Restaurant newRestaurant)
+        {
+            var id = restaurants.Max(r => r.Id) + 1;
+            newRestaurant.Id = id;
+            return newRestaurant;           
+        }
+
         int IRestaurantData.Commit()
         {
             return 0;

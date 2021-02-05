@@ -16,6 +16,8 @@ namespace OdeToFood.Data
         // from the user interface, like automatically generating a timestamp.
         Restaurant Update(Restaurant updatedRestaurant);
 
+        Restaurant Add(Restaurant newRestaurant);
+
         // It is a convention to have this method.
         //
         // The reason is that the core object represents a unit of work (?),
