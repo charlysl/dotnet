@@ -42,6 +42,7 @@ namespace OdeToFood.Pages.Restaurants
         public void OnPost()
         {
             restaurantData.Update(Restaurant);
+            restaurantData.Commit();
         }
     }
 }

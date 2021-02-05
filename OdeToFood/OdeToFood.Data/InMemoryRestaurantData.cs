@@ -27,6 +27,11 @@ namespace OdeToFood.Data
                    select r;
         }
 
+        int IRestaurantData.Commit()
+        {
+            return 0;
+        }
+
         Restaurant IRestaurantData.GetById(int restaurantId)
         {
             return restaurants.SingleOrDefault(r => r.Id == restaurantId);
