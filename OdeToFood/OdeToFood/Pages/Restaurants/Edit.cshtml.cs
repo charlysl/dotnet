@@ -41,6 +41,14 @@ namespace OdeToFood.Pages.Restaurants
 
         public void OnPost()
         {
+            // The page model is stateless, so this property
+            // need to be populated for every request.
+            //
+            // This is not an issue for the other properties,
+            // because they were already populated, as input models,
+            // by the request
+            CuisineItems = htmlHelper.GetEnumSelectList<CuisineType>();
+
             restaurantData.Update(Restaurant);
             restaurantData.Commit();
         }
