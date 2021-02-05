@@ -62,37 +62,47 @@ namespace OdeToFood.Pages.Restaurants
             //
             // But, most of the time, it is used whether all the parameters
             // in the request are valid.
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                restaurantData.Update(Restaurant);
-                restaurantData.Commit();
+                // The page model is stateless, so this property
+                // need to be populated for every request.
+                //
+                // This is not an issue for the other properties,
+                // because they were already populated, as input models,
+                // by the request
+                CuisineItems = htmlHelper.GetEnumSelectList<CuisineType>();
 
-                // It is bad practice after making a POST request to
-                // stay the same URL. The reason is that a POST request
-                // typically creates new resources, which is not what you
-                // may want to happen if you refresh the page. This is the
-                // reason browser warn you before resubmitting such a page.
-                //
-                // The POST-GET-REDIRECT pattern:
-                //
-                // The conventional way around this is to redirect to a
-                // "safe" page, one that would perform a GET request if
-                // refreshed.
-                //
-                // C# allows you to create typeless objects, which is convenient
-                // in this case to pass the route for the redirect.
-                return RedirectToPage("./Details", new { restaurantId = Restaurant.Id });
+                return Page();
             }
 
-            // The page model is stateless, so this property
-            // need to be populated for every request.
-            //
-            // This is not an issue for the other properties,
-            // because they were already populated, as input models,
-            // by the request
-            CuisineItems = htmlHelper.GetEnumSelectList<CuisineType>();
+            // We assume that the database will never generate ids
+            // that are 0, which is that of a new restaurant.
+            if (Restaurant.Id == 0)
+            {
+                restaurantData.Add(Restaurant);
+            }
+            else
+            {
+                restaurantData.Update(Restaurant);
+            }
 
-            return Page();
+            restaurantData.Commit();
+
+            // It is bad practice after making a POST request to
+            // stay the same URL. The reason is that a POST request
+            // typically creates new resources, which is not what you
+            // may want to happen if you refresh the page. This is the
+            // reason browser warn you before resubmitting such a page.
+            //
+            // The POST-GET-REDIRECT pattern:
+            //
+            // The conventional way around this is to redirect to a
+            // "safe" page, one that would perform a GET request if
+            // refreshed.
+            //
+            // C# allows you to create typeless objects, which is convenient
+            // in this case to pass the route for the redirect.
+            return RedirectToPage("./Details", new { restaurantId = Restaurant.Id });
         }
     }
 }
