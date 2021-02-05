@@ -27,12 +27,23 @@ namespace OdeToFood.Pages.Restaurants
             this.htmlHelper = htmlHelper;
         }
 
-        public IActionResult OnGet(int restaurantId)
+        // The restaurantId parameter is optional.
+        //
+        // This means it now has the HasValue and Value properties,
+        // and this is because it implicitly implements the Nullable interface
+        public IActionResult OnGet(int? restaurantId)
         {
-            Restaurant = restaurantData.GetById(restaurantId);
-            if (Restaurant == null)
+            if (restaurantId.HasValue)
             {
-                return RedirectToPage("./NotFound");
+                Restaurant = restaurantData.GetById(restaurantId.Value);
+                if (Restaurant == null)
+                {
+                    return RedirectToPage("/NotFound");
+                }
+            }
+            else
+            {
+                Restaurant = new Restaurant();
             }
 
             CuisineItems = htmlHelper.GetEnumSelectList<CuisineType>();
