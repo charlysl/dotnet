@@ -13,16 +13,19 @@ namespace OdeToFood.Pages.Restaurants
     public class EditModel : PageModel
     {
         private readonly IRestaurantData restaurantData;
+
         private readonly IHtmlHelper htmlHelper;
+
+        [BindProperty]
+        public Restaurant Restaurant { get; set; }
+
+        public IEnumerable<SelectListItem> CuisineItems { get; private set; }
 
         public EditModel(IRestaurantData restaurantData, IHtmlHelper htmlHelper)
         {
             this.restaurantData = restaurantData;
             this.htmlHelper = htmlHelper;
         }
-
-        public Restaurant Restaurant { get; private set; }
-        public IEnumerable<SelectListItem> CuisineItems { get; private set; }
 
         public IActionResult OnGet(int restaurantId)
         {
@@ -34,6 +37,11 @@ namespace OdeToFood.Pages.Restaurants
 
             CuisineItems = htmlHelper.GetEnumSelectList<CuisineType>();
             return Page();
+        }
+
+        public void OnPost()
+        {
+            restaurantData.Update(Restaurant);
         }
     }
 }
