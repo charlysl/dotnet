@@ -49,8 +49,17 @@ namespace OdeToFood.Pages.Restaurants
             // by the request
             CuisineItems = htmlHelper.GetEnumSelectList<CuisineType>();
 
-            restaurantData.Update(Restaurant);
-            restaurantData.Commit();
+            // ModelState has information about the request, for instance
+            // the attempted value of a paramater that might be invalid,
+            // and many; it has the information asp-for relies on
+            //
+            // But, most of the time, it is used whether all the parameters
+            // in the request are valid.
+            if (ModelState.IsValid)
+            {
+                restaurantData.Update(Restaurant);
+                restaurantData.Commit();
+            }
         }
     }
 }
