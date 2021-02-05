@@ -39,16 +39,12 @@ namespace OdeToFood.Pages.Restaurants
             return Page();
         }
 
-        IActionResult OnPost()
+        // If you ommit the "public" modifier, there is no warning,
+        // the page will still do something, but won't execute the
+        // method; this can be very frustrating until you realize
+        // what is going on.
+        public IActionResult OnPost()
         {
-            // The page model is stateless, so this property
-            // need to be populated for every request.
-            //
-            // This is not an issue for the other properties,
-            // because they were already populated, as input models,
-            // by the request
-            CuisineItems = htmlHelper.GetEnumSelectList<CuisineType>();
-
             // ModelState has information about the request, for instance
             // the attempted value of a paramater that might be invalid,
             // and many; it has the information asp-for relies on
@@ -76,6 +72,14 @@ namespace OdeToFood.Pages.Restaurants
                 // in this case to pass the route for the redirect.
                 return RedirectToPage("./Details", new { restaurantId = Restaurant.Id });
             }
+
+            // The page model is stateless, so this property
+            // need to be populated for every request.
+            //
+            // This is not an issue for the other properties,
+            // because they were already populated, as input models,
+            // by the request
+            CuisineItems = htmlHelper.GetEnumSelectList<CuisineType>();
 
             return Page();
         }
