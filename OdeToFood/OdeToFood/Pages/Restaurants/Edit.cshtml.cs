@@ -39,7 +39,7 @@ namespace OdeToFood.Pages.Restaurants
             return Page();
         }
 
-        public void OnPost()
+        IActionResult OnPost()
         {
             // The page model is stateless, so this property
             // need to be populated for every request.
@@ -59,7 +59,25 @@ namespace OdeToFood.Pages.Restaurants
             {
                 restaurantData.Update(Restaurant);
                 restaurantData.Commit();
+
+                // It is bad practice after making a POST request to
+                // stay the same URL. The reason is that a POST request
+                // typically creates new resources, which is not what you
+                // may want to happen if you refresh the page. This is the
+                // reason browser warn you before resubmitting such a page.
+                //
+                // The POST-GET-REDIRECT pattern:
+                //
+                // The conventional way around this is to redirect to a
+                // "safe" page, one that would perform a GET request if
+                // refreshed.
+                //
+                // C# allows you to create typeless objects, which is convenient
+                // in this case to pass the route for the redirect.
+                return RedirectToPage("./Details", new { restaurantId = Restaurant.Id });
             }
+
+            return Page();
         }
     }
 }
