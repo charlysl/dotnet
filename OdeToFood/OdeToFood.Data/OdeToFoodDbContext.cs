@@ -19,6 +19,6 @@ namespace OdeToFood.Data
         // Can have dozens more entities, and also
         // relations between them.
         // This is covered in the EF PL courses
-        DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Restaurant> Restaurants { get; set; }
     }
 }
