@@ -33,7 +33,11 @@ namespace OdeToFood
                 options.UseSqlServer(Configuration.GetConnectionString("OdeToFoodDb"));
             });
 
-            services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
+            // A singleton would be terrible for a production database.
+            //
+            // "Scoped" means that a different instance will be generated
+            // for each request.
+            services.AddScoped<IRestaurantData, SqlRestaurantData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
