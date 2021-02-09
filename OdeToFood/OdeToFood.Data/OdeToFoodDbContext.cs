@@ -9,6 +9,11 @@ namespace OdeToFood.Data
     // Will automatically generate the schema.
     public class OdeToFoodDbContext : DbContext
     {
+        public OdeToFoodDbContext(DbContextOptions options)
+            : base(options)
+        {
+        }
+
         // Perform CRUD operations on Restaurant
         //
         // Can have dozens more entities, and also

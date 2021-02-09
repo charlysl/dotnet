@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +27,11 @@ namespace OdeToFood
         {
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation(); // see https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-compilation?view=aspnetcore-3.0&tabs=visual-studio
+
+            services.AddDbContextPool<OdeToFoodDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("OdeToFoodDb"));
+            });
 
             services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
         }
