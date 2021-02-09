@@ -18,6 +18,8 @@ namespace OdeToFood.Data
 
         Restaurant Add(Restaurant newRestaurant);
 
+        Restaurant Delete(int id);
+
         // It is a convention to have this method.
         //
         // The reason is that the core object represents a unit of work (?),
