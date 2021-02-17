@@ -39,6 +39,8 @@ namespace OdeToFood.Pages.Restaurants
                 return RedirectToPage("../NotFound");
             }
 
+            restaurantData.Commit();
+
             TempData["Message"] = $"{restaurant.Name} has been deleted";
             return RedirectToPage("./List");
         }
