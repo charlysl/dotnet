@@ -55,6 +55,11 @@ namespace OdeToFood.Data
             return restaurants.SingleOrDefault(r => r.Id == restaurantId);
         }
 
+        int IRestaurantData.GetRestaurantCount()
+        {
+            return restaurants.Count();
+        }
+
         Restaurant IRestaurantData.Update(Restaurant updatedRestaurant)
         {
             var restaurant = restaurants.SingleOrDefault(r => r.Id == updatedRestaurant.Id);

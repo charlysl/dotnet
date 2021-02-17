@@ -7,6 +7,7 @@ namespace OdeToFood.Data
     {
         IEnumerable<Restaurant> GetRestaurantsByName(string name = null);
         Restaurant GetById(int restaurantId);
+        int GetRestaurantCount();
 
         // It is a convention to return a reference of the same type.
         //
